@@ -20,7 +20,7 @@ public class EmployerController {
 
     @GetMapping("employers")
     public String displayAllEmployers(Model model) {
-        model.addAttribute("job.name");
+        model.addAttribute("job.name"); // Make sure this is the correct value
         return "employers/index";
     }
 
