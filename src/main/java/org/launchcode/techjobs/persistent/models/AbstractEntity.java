@@ -17,8 +17,8 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private int id;
 
-    @NotBlank
-    @Size(max = 100) // Not sure what they are wanting here, it only says the name string might be longer than 50 characters
+    @NotBlank(message = "Name cannot be blank")
+    @Size(max = 50, message = "Name cannot be longer than 50 characters") // Not sure what they are wanting here, it only says the name string might be longer than 50 characters
     private String name;
 
     public int getId() {
