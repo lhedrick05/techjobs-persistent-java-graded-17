@@ -18,9 +18,10 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
-    @GetMapping("employers")
-    public String displayAllEmployers(Model model) {
+    @GetMapping("/")
+    public String index(Model model) {
         model.addAttribute("job.name"); // Make sure this is the correct value
+        model.addAttribute(employerRepository.findAll());
         return "employers/index";
     }
 
@@ -38,13 +39,15 @@ public class EmployerController {
             return "employers/add";
         }
 
+        employerRepository.save(newEmployer); // Need to confirm this is the correct format for task 2 controllers, 3rd bullet
+
         return "redirect:";
     }
 
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
-        Optional optEmployer = null;
+        Optional optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
