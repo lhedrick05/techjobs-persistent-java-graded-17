@@ -17,7 +17,7 @@ public class Job extends AbstractEntity {
 //    private String name;
     @ManyToMany
     @NotNull(message = "Cannot be blank")
-    @Size(min = 1, message = "Select 1 skill")
+    @Size(min = 1, message = "Select 1 skill at minimum")
     private List<Skill> skills;
 
     @ManyToOne
