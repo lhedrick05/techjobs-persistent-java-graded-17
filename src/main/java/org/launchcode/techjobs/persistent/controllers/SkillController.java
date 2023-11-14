@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,9 +22,9 @@ public class SkillController {
     private SkillRepository skillRepository;
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("skill.name"); // Make sure this is the correct value
-        model.addAttribute(skillRepository.findAll());
+    public String index (Model model){
+        List skills = (List<Skill>) skillRepository.findAll();
+        model.addAttribute("skills", skills);
         return "skills/index";
     }
 
@@ -38,6 +39,7 @@ public class SkillController {
                                          Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+            model.addAttribute("skill", new Skill());
             return "skills/add";
         }
 

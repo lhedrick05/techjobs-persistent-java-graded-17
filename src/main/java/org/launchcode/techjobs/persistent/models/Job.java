@@ -15,13 +15,14 @@ public class Job extends AbstractEntity {
 //    private int id;
 
 //    private String name;
+
+    @ManyToOne
+    private Employer employer;
     @ManyToMany
     @NotNull(message = "Cannot be blank")
     @Size(min = 1, message = "Select 1 skill at minimum")
     private List<Skill> skills;
 
-    @ManyToOne
-    private Employer employer;
 
 //    private String skills;
 
